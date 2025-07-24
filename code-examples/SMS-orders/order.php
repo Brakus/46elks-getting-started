@@ -154,7 +154,8 @@ http_response_code(200);
 
 // Get data from POST request and extract its contents.
 // The recieved parameters are described in the docs at https://46elks.se/docs/receive-sms
-extract($_POST);
+$from = $_POST["from"];
+$message = $_POST["message"];
 
 // Check user input and respond accordingly.
 // Currently, this checks for an exact match with the user input,
