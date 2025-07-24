@@ -41,6 +41,8 @@ if (!$conn) error("DB connection failed: " . mysqli_connect_error());
 
 function add_order($user, $message){
 	global $conn;
+	$user = mysqli_escape_string( $conn, $user );
+	$message = mysqli_escape_string( $conn, $message );
 	$sql = "INSERT INTO orders (user, message) VALUES ('$user','$message')";
 
 	if (mysqli_query($conn, $sql) === TRUE) :
@@ -68,6 +70,7 @@ function add_order($user, $message){
 
 function is_first_order($user){
 	global $conn;
+	$user = mysqli_escape_string( $conn, $user );
 	$sql 		= "SELECT id FROM orders WHERE user = '$user' LIMIT 1";
 	$result = mysqli_query($conn, $sql);
 	return !(mysqli_num_rows($result) > 0);
